@@ -1,0 +1,9 @@
+docker run --rm --shm-size=1g \
+        --name torch-serve \
+        --ulimit memlock=-1 \
+        --ulimit stack=67108864 \
+        -p 8080:8080 \
+        -p 8081:8081 \
+        --mount type=bind,source=/home/gatvprojects/Desktop/plate_detection/pytorch-serving-detectron2/model_store,target=/tmp/models \
+        pytorch/torchserve:0.1.1-cpu \
+        torchserve --model-store=/tmp/models
